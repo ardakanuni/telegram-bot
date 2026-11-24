@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""دستیار هوشمند انجمن علمی مهندسی عمران دانشگاه اردکان - ربات تلگرام"""
+"""دستیار هوشمند انجمن علمی مهندسی صنایع دانشگاه اردکان - ربات تلگرام"""
 import os, io, csv, json, sqlite3, asyncio, logging
 from datetime import datetime, timedelta
 import jdatetime
@@ -14,7 +14,7 @@ ADMINS = {int(x) for x in os.environ.get("ADMIN_IDS", "").split(",") if x.strip(
 PUB_CHAT = int(os.environ.get("PUB_CHAT_ID") or (next(iter(ADMINS), 0)))
 CARD = os.environ.get("CARD_INFO", "شماره کارت: ----\nبه نام: ----")
 CONTACT = os.environ.get("CONTACT_LINK", "https://t.me/your_support")
-ASSOC = "انجمن علمی مهندسی عمران دانشگاه اردکان"
+ASSOC = "انجمن علمی مهندسی صنایع دانشگاه اردکان"
 POINT_VALUE = 5000  # هر امتیاز = ۵۰۰۰ تومان (۱۰ امتیاز = ۵۰٬۰۰۰ تومان)
 FA = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
 KINDS = {"visit": ("بازدیدهای علمی", "🔬"), "course": ("دوره‌ها", "📚"),
