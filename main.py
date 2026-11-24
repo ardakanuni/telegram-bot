@@ -81,16 +81,22 @@ def parse_j(s):
 # ---------------------------------------------------------------- texts
 RULES = f"""📜 قوانین و راهنمای دستیار هوشمند {ASSOC}
 
-🟦 1 حساب و اطلاعات
+🟦 ۱ حساب و اطلاعات
 برای ثبت‌نام، نام و نام خانوادگی، شماره دانشجویی، رشته، سال ورودی، شماره موبایل و دانشگاه را وارد کنید. اطلاعات را درست وارد کنید؛ در پروفایل قابل ویرایش است. اطلاعات و رسیدها برای مدیریت ثبت‌نام و پیگیری در اختیار انجمن قرار می‌گیرد.
 
-🟦 2 ثبت‌نام و ظرفیت
-زمان، محل، هزینه، ظرفیت و مهلت ثبت‌نام در صفحه هر برنامه اعلام می‌شود. در برنامه پولی، ارسال رسید به معنی ثبت‌نام قطعی نیست؛ ظرفیت فقط پس از تأیید انجمن اشغال می‌شود..
+🟦 ۲ ثبت‌نام و ظرفیت
+زمان، محل، هزینه، ظرفیت و مهلت ثبت‌نام در صفحه هر برنامه اعلام می‌شود. در برنامه پولی، ارسال رسید به معنی ثبت‌نام قطعی نیست؛ ظرفیت فقط پس از تأیید انجمن اشغال می‌شود. پرداخت کامل با امتیاز در صورت وجود ظرفیت، ثبت‌نام را قطعی می‌کند.
 
-🟦 3 لغو ثبت‌نام و بازگشت
-ثبت‌نام تأییدشده را پیش از شروع بازدید در بخش «ثبت‌نام‌های من» می‌توانید لغو کنید. تا ۴۸ ساعت پیش از شروع، ۸۰٪ مبلغ پرداختی بازمی‌گردد؛ پس از آن وجه بازگشت ندارد. بازگشت وجه بانکی خودکار نیست و باید با انجمن پیگیری شود. برای ثبت‌نام مجدد پس از لغو با انجمن تماس بگیرید.
+🟦 ۳ حضور، غیبت و امتیاز
+حضور و غیاب همه برنامه‌ها ثبت می‌شود. فقط در بازدیدهای علمی حضور ۱۰ امتیاز مثبت و غیبت ۵ امتیاز منفی دارد؛ در دوره‌ها، همایش‌ها و وبینارها امتیازی بابت حضور یا غیبت ثبت نمی‌شود. با اصلاح حضور بازدید، امتیاز آن نیز اصلاح می‌شود. ثبت‌نام به‌تنهایی امتیاز ندارد.
 
-🟦 4 اطلاع‌رسانی و ارتباط
+🟦 ۴ استفاده از امتیاز
+هر ۱۰ امتیاز معادل ۵۰٬۰۰۰ تومان است. می‌توانید با واریز و ارسال رسید، امتیاز بخرید؛ پس از تأیید مدیر به موجودی اضافه می‌شود. در برنامه‌های پولی می‌توانید از موجودی مثبت خود استفاده کنید؛ اگر کافی نباشد، باقی‌مانده را کارت‌به‌کارت کرده و رسید بفرستید. امتیاز اعشاری پذیرفته نمی‌شود. در پرداخت ترکیبی، امتیاز تا بررسی رسید نگه داشته می‌شود و در صورت رد رسید آزاد می‌شود.
+
+🟦 ۵ لغو ثبت‌نام و بازگشت
+ثبت‌نام تأییدشده را پیش از شروع بازدید در بخش «ثبت‌نام‌های من» می‌توانید لغو کنید. تا ۴۸ ساعت پیش از شروع، ۸۰٪ مبلغ پرداختی و ۸۰٪ امتیاز مصرفی بازمی‌گردد؛ پس از آن وجه و امتیاز بازگشت ندارد. مبلغ و معادل امتیاز به پایین‌ترین تومان گرد می‌شوند. بازگشت وجه بانکی خودکار نیست و باید با انجمن پیگیری شود. برای ثبت‌نام مجدد پس از لغو با انجمن تماس بگیرید.
+
+🟦 ۶ اطلاع‌رسانی و ارتباط
 یادآوری‌ها و گزارش بازدید از طریق همین ربات ارسال می‌شوند؛ لطفاً اعلان‌های ربات را در پیام‌رسان فعال کنید. می‌توانید برای هر بازدید نظر، عکس، ویدئو یا فایل برای انجمن بفرستید. ارتباط و پیگیری:
 {CONTACT}
 
@@ -109,6 +115,15 @@ STEPS = [("title", "عنوان برنامه را بفرستید:"), ("descr", "�
          ("starts_at", "زمان شروع (شمسی) مثل 1405/09/10 09:00:"), ("place", "مکان برگزاری:"),
          ("cost", "هزینه به تومان (۰ برای رایگان):"), ("capacity", "ظرفیت (۰ = نامحدود):"),
          ("deadline", "مهلت ثبت‌نام (شمسی مثل 1405/09/08 23:59) یا - برای «تا زمان شروع»:")]
+EDIT_FIELDS = {
+    "title": ("عنوان", "عنوان جدید برنامه را بفرستید:"),
+    "descr": ("توضیحات", "توضیحات جدید برنامه را بفرستید:"),
+    "starts_at": ("زمان شروع", "زمان شروع جدید را شمسی بفرستید؛ مثل 1405/09/10 09:00:"),
+    "place": ("مکان", "مکان جدید برگزاری را بفرستید:"),
+    "cost": ("هزینه", "هزینه جدید را به تومان بفرستید (۰ = رایگان):"),
+    "capacity": ("ظرفیت", "ظرفیت جدید را بفرستید (۰ = نامحدود):"),
+    "deadline": ("مهلت ثبت‌نام", "مهلت جدید را شمسی بفرستید؛ مثل 1405/09/08 23:59 یا - برای تا زمان شروع:"),
+}
 PROMPTS = {"name": "نام و نام خانوادگی خود را وارد کنید:", "sid": "شماره دانشجویی را وارد کنید:",
            "major": "رشته را وارد کنید:", "year": "سال ورودی را وارد کنید (مثلاً 403):"}
 ORDER = ["name", "sid", "major", "year", "phone"]
@@ -435,9 +450,45 @@ async def on_cb(u, c):
             await show(u, f"{ptext(p)}\n\nثبت‌نام‌کنندگان فعال: {n}",
                        M([[B("🧾 حضور و غیاب", callback_data=f"att:{p['id']}")], [B("📄 خروجی CSV", callback_data=f"csv:{p['id']}")],
                           [B("📢 پیام به ثبت‌نام‌شدگان", callback_data=f"ntf:{p['id']}")],
-                          [B("🔁 فعال/غیرفعال", callback_data=f"tog:{p['id']}")], [B("🔙 بازگشت", callback_data="adm:progs")]]))
+                          [B("✏️ ویرایش برنامه", callback_data=f"edmenu:{p['id']}")],
+                          [B("🔁 فعال/غیرفعال", callback_data=f"tog:{p['id']}")],
+                          [B("🗑 حذف / آرشیو برنامه", callback_data=f"del:{p['id']}")],
+                          [B("🔙 بازگشت", callback_data="adm:progs")]]))
+        elif a == "edmenu":
+            pid = int(d[1]); p = P(pid)
+            if not p: return await show(u, "برنامه پیدا نشد.", M([[B("🔙 بازگشت", callback_data="adm:progs")]]))
+            rows = [[B(label, callback_data=f"edfield:{pid}:{key}")] for key, (label, prompt) in EDIT_FIELDS.items()]
+            rows.append([B("🔙 بازگشت به برنامه", callback_data=f"ap:{pid}")])
+            await show(u, f"✏️ ویرایش برنامه: {p['title']}\n\nکدام بخش را می‌خواهید تغییر دهید؟", M(rows))
+        elif a == "edfield":
+            pid, key = int(d[1]), d[2]
+            if key not in EDIT_FIELDS or not P(pid): return await show(u, "درخواست نامعتبر است.", M([HOME]))
+            c.user_data["st"] = f"ep:{pid}:{key}"
+            await show(u, f"ویرایش {EDIT_FIELDS[key][0]} برنامه شماره {pid}\n{EDIT_FIELDS[key][1]}\n\nبرای انصراف /cancel را بزنید.")
+        elif a == "del":
+            pid = int(d[1]); p = P(pid)
+            if not p: return await show(u, "برنامه پیدا نشد.", M([[B("🔙 بازگشت", callback_data="adm:progs")]]))
+            n = q("select count(*) n from registrations where program_id=?", (pid,), one=True)["n"]
+            f = q("select count(*) n from feedback where program_id=?", (pid,), one=True)["n"]
+            mode = "آرشیو" if n or f else "حذف دائمی"
+            detail = "چون برای این برنامه ثبت‌نام یا بازخورد وجود دارد، فقط غیرفعال و آرشیو می‌شود و سوابق حفظ می‌شوند." if n or f else "برای این برنامه سابقه ثبت‌نام یا بازخوردی وجود ندارد؛ برنامه برای همیشه حذف می‌شود."
+            await show(u, f"⚠️ {mode} برنامه «{p['title']}»؟\n\n{detail}\n\nمطمئن هستید؟",
+                       M([[B("✅ بله، ادامه بده", callback_data=f"delyes:{pid}")], [B("❌ انصراف", callback_data=f"ap:{pid}")]]))
+        elif a == "delyes":
+            pid = int(d[1]); p = P(pid)
+            if not p: return await show(u, "این برنامه قبلاً حذف یا آرشیو شده است.", M([[B("📋 مدیریت برنامه‌ها", callback_data="adm:progs")]]))
+            n = q("select count(*) n from registrations where program_id=?", (pid,), one=True)["n"]
+            f = q("select count(*) n from feedback where program_id=?", (pid,), one=True)["n"]
+            if n or f:
+                q("update programs set active=0 where id=?", (pid,))
+                msg = "📦 برنامه آرشیو شد؛ سوابق ثبت‌نام و بازخوردها حفظ شدند."
+            else:
+                q("delete from programs where id=?", (pid,))
+                msg = "🗑 برنامه برای همیشه حذف شد."
+            c.user_data["st"] = ""
+            await show(u, msg, M([[B("📋 مدیریت برنامه‌ها", callback_data="adm:progs")]]))
         elif a == "tog":
-            q("update programs set active=1-active where id=?", (int(d[1]),)); await qy.message.reply_text("انجام شد.")
+            q("update programs set active=1-active where id=?", (int(d[1]),)); await show(u, "وضعیت برنامه تغییر کرد.", M([[B("🔙 بازگشت به برنامه", callback_data=f"ap:{d[1]}")]]))
         elif a == "att": await render_att(u, int(d[1]))
         elif a == "at":
             r = q("select r.*,p.kind from registrations r join programs p on p.id=r.program_id where r.id=?", (int(d[1]),), one=True)
@@ -552,6 +603,36 @@ async def on_msg(u, c):
         if pid: ex("insert into feedback(user_id,program_id,ctype,content) values(?,?,?,?)", (uid, pid, "text" if t else "file", t or fid or ""))
         else: c.user_data["st"] = ""
         await m.reply_text("✅ ارسال شد." + (" می‌توانید مورد دیگری هم بفرستید." if pid else ""), reply_markup=M([HOME]))
+    elif uid in ADMINS and st.startswith("ep:"):
+        parts = st.split(":")
+        pid, key = int(parts[1]), parts[2]
+        if key not in EDIT_FIELDS or not P(pid):
+            c.user_data["st"] = ""
+            return await m.reply_text("برنامه یا فیلد ویرایش پیدا نشد؛ دوباره از پنل مدیریت اقدام کنید.")
+        try:
+            if key in ("starts_at", "deadline"):
+                value = P(pid)["starts_at"] if key == "deadline" and t == "-" else parse_j(t).isoformat(timespec="seconds")
+            elif key in ("cost", "capacity"):
+                value = num(t)
+                if value < 0: raise ValueError("negative value")
+            else:
+                if not t: raise ValueError("empty value")
+                value = t
+            if key == "starts_at":
+                old_deadline = P(pid)["deadline"]
+                # If the deadline previously matched the start time, keep that relationship.
+                if old_deadline == P(pid)["starts_at"]:
+                    q("update programs set starts_at=?,deadline=? where id=?", (value, value, pid))
+                else:
+                    q("update programs set starts_at=? where id=?", (value, pid))
+            else:
+                q(f"update programs set {key}=? where id=?", (value, pid))
+        except Exception:
+            return await m.reply_text("❌ مقدار یا قالب واردشده درست نیست؛ دوباره بفرستید.\nبرای تاریخ از قالب شمسی مثل 1405/09/10 09:00 استفاده کنید.")
+        c.user_data["st"] = ""
+        await m.reply_text(f"✅ {EDIT_FIELDS[key][0]} برنامه به‌روزرسانی شد.",
+                           reply_markup=M([[B("✏️ ادامه ویرایش", callback_data=f"edmenu:{pid}")],
+                                           [B("📋 صفحه برنامه", callback_data=f"ap:{pid}")]]))
     elif uid in ADMINS and st.startswith("np:"):
         np = c.user_data.setdefault("np", {}); idx = int(st.split(":")[1]); key = STEPS[idx][0]
         try:
